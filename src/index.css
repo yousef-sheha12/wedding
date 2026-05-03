@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@tailwind base;
+@layer base {
+  html,
+  body {
+    font-family: "Bodoni Moda", ui-serif, serif;
+  }
+}
