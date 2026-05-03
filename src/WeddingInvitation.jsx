@@ -253,7 +253,7 @@ export default function WeddingInvitation() {
                 icon={Heart}
               />
               <ProgramItem
-                title="Dinner Service"
+                title="Drink and Dessert"
                 subtitle="Fine dining experience"
                 icon={Utensils}
               />
