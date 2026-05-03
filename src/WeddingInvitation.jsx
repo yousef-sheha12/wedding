@@ -33,6 +33,7 @@ const ProgramItem = ({ time, title, subtitle, icon: Icon }) => (
     className="flex items-start gap-4 mb-8"
   >
     <div className="bg-[#F9F6F0] p-3 rounded-full shadow-sm border border-[#EAE3D2]">
+      {/* eslint-disable-next-line no-unused-vars */}
       <Icon className="text-[#BDAA7D]" size={24} />
     </div>
     <div>
@@ -52,13 +53,21 @@ export default function WeddingInvitation() {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
+      audio.loop = true;
       audio.volume = 0.3;
       audio.play().catch((e) => console.log("Play error:", e));
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-serif text-gray-800 selection:bg-[#F3EEE0]">
+    <div className="min-h-screen bg-[#FDFBF7] font-serif text-gray-800 selection:bg-[#F3EEE0] relative">
+      <audio
+        ref={audioRef}
+        src="/assets/leberch-invitation-wedding-375839.mp3"
+        loop
+        preload="auto"
+        className="fixed inset-0 w-0 h-0 opacity-0 pointer-events-none z-[-1]"
+      />
       <AnimatePresence mode="wait">
         {!isOpen ? (
           <motion.div
@@ -97,7 +106,14 @@ export default function WeddingInvitation() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  setIsOpen(true);
+                  // Play audio on user gesture
+                  const audio = audioRef.current;
+                  if (audio && audio.paused) {
+                    audio.play().catch((e) => console.log("Play error:", e));
+                  }
+                }}
                 className="group relative inline-flex items-center gap-3 px-10 py-4 bg-[#2D2D2D] text-[#F9F6F0] rounded-full overflow-hidden transition-all shadow-xl"
               >
                 <span className="relative z-10 font-bold tracking-[0.2em] text-sm">
@@ -154,7 +170,7 @@ export default function WeddingInvitation() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.8 }}
-                  className="text-6xl w-55 text-center font-serif mb-6 leading-tight"
+                  className="text-6xl w-55 text-center font-serif mb-6 ml-3 leading-tight"
                 >
                   Ahmed & Fatma
                 </motion.h1>
@@ -272,7 +288,7 @@ export default function WeddingInvitation() {
                 href="https://maps.google.com/?q=30.055393,31.273636"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-5 bg-[#2D2D2D] text-[#F5F1E6] rounded-2xl font-bold tracking-[0.2em] flex items-center justify-center gap-3 shadow-lg"
+                className="w-full p-5 bg-[#2D2D2D] text-[#F5F1E6] rounded-2xl font-bold tracking-[0.2em] flex items-center justify-center gap-3 shadow-lg"
               >
                 <MapPin size={18} /> OPEN IN GOOGLE MAPS
               </a>
@@ -313,6 +329,14 @@ export default function WeddingInvitation() {
                 Ahmed & Fatma 2026
               </p>
             </footer>
+
+            <audio
+              ref={audioRef}
+              src="/assets/leberch-invitation-wedding-375839.mp3"
+              loop
+              preload="auto"
+              className="fixed inset-0 w-0 h-0 opacity-0 pointer-events-none z-[-1]"
+            />
           </motion.main>
         )}
       </AnimatePresence>
