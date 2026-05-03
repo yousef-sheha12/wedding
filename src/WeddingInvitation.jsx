@@ -176,7 +176,7 @@ export default function WeddingInvitation() {
                 </motion.h1>
                 <div className="h-[1px] w-16 bg-white/60 mx-auto mb-6" />
                 <p className="tracking-[0.3em] text-sm font-light uppercase">
-                  Friday, Oct 10th 2026
+                  Friday, July 10th 2026
                 </p>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
@@ -211,7 +211,7 @@ export default function WeddingInvitation() {
                     Date
                   </p>
                   <p className="text-sm font-bold text-[#2D2D2D]">
-                    Oct 10, 2026
+                    July 10, 2026
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE3D2]">
